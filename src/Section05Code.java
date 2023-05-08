@@ -7,7 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class IdentifyingLocators {
+public class Section05Code {
 
 	public static void main(String[] args) {
 		// Initiate Firefox
