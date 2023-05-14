@@ -4,3 +4,4 @@
 .vscode/settings.json
 bin/*
 .vscode/*
+target/classes/*
