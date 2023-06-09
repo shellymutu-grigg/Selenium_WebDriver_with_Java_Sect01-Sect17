@@ -40,6 +40,7 @@ public class Section10Code {
 		String child = iterate.next();
 		webDriver.switchTo().window(child);
 
+		// Wait for page to render
 		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".im-para.red")));
 
 		// Use a breakpoint and RC watch to determine values
@@ -51,6 +52,34 @@ public class Section10Code {
 		// Switch to parent tab
 		webDriver.switchTo().window(parent);
 		webDriver.findElement(By.id("username")).sendKeys(emailAddress);
+
+		// Navigate to new webpage
+		webDriver.get("https://jqueryui.com/droppable/");
+
+		// Wait for page to render
+		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[@class='entry-title']")));
+
+		// Switch to the iframe using cssSelector
+		// webDriver.switchTo().frame(webDriver.findElement(By.cssSelector("iframe[class='demo-frame']")));
+
+		// Find number of iframes on page
+		System.out.println("Number of iframes on page:  " + webDriver.findElements(By.tagName("iframe")).size());
+
+		// Switch to the iframe using index
+		webDriver.switchTo().frame(0);
+
+		webDriver.findElement(By.id("draggable")).click();
+
+		// Identify source and target elements
+		WebElement sourceElement = webDriver.findElement(By.id("draggable"));
+		WebElement targetElement = webDriver.findElement(By.id("droppable"));
+
+		// Drag and drop element
+		action.dragAndDrop(sourceElement, targetElement).build().perform();
+
+		// Exit iframe
+		webDriver.switchTo().defaultContent();
+		webDriver.findElement(By.linkText("Draggable")).click();
 
 	}
 
