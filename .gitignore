@@ -5,3 +5,4 @@
 bin/*
 .vscode/*
 target/classes/*
+test-output/*
