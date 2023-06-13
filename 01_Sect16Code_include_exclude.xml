@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<!--Run tests in parallel - not recommended-->
+<suite name="TestNG Suite" parallel="tests" thread-count="6">
+	<!--Global parameters-->
+	<parameter name="URL" value="https://www.google.com"/>
+	<listeners>	
+		<listener class-name="Section16CodeTestNG.Section16CodeTestNG05_Listeners"/>
+	</listeners>
+	
+	<!--Test Group-->
+	<!--Run classes in parallel - not recommended-->
+ 	<test thread-count="5" name="Test Random" parallel="classes">
+		 <parameter name="APIKey/username" value="USERNAME"/>
+	    <classes>
+	      <class name="Section16CodeTestNG.Section16CodeTestNG02"/>
+	      <class name="Section16CodeTestNG.Section16CodeTestNG01">
+			  <methods>
+				  <!--This will include TestNG_01 but won't run TestNG_02-->
+				  <include name = "TestNG_01"/>
+			  </methods>
+		  </class>
+	    </classes>
+	</test> 
+  
+ 	<test thread-count="5" name="Test Loans">
+  		<classes>
+	    	<class name="Section16CodeTestNG.Section16CodeTestNG04"/>
+	      	<class name="Section16CodeTestNG.Section16CodeTestNG03">
+				<methods>
+					<!--This will exclude TestNGMobileLoginCarLoan_06 from execution-->
+			  		<exclude name="TestNGMobileLoginCarLoan_06"/>
+			  		<!--This will exclude any tests starting with TestNGWeb from execution-->
+			  		<exclude name="TestNGWeb.*"/>
+		  		</methods>
+			</class>
+    	</classes>
+	</test> 
+</suite> 
